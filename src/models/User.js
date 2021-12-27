@@ -1,15 +1,18 @@
 // import important parts of sequelize library
-const { Model, DataTypes, ConnectionError } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 
 // import our database connection from config.js
 const connection = require("../config/connection");
 
-// Initialize User model (table) by extending off Sequelize's Model class
-class User extends Model {}
-
 const hashPassword = require("../../hooks/hashPassword");
 
 const schema = {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+  },
   username: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -51,6 +54,7 @@ const options = {
   },
 };
 
+// Initialize User model (table) by extending off Sequelize's Model class
 class User extends Model {
   async checkPassword(userPassword) {
     const isValid = await bcrypt.compare(userPassword, this.password);
