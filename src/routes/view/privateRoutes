@@ -1,0 +1,13 @@
+const { Router } = require("express");
+
+const {
+  renderDashboard,
+  renderMyPosts,
+} = require("../../controllers/view/privateRoutes");
+
+const router = Router();
+
+router.get("/dashboard/", renderDashboard);
+router.get("/my-posts", renderMyPosts);
+
+module.exports = router;
