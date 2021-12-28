@@ -7,7 +7,7 @@ const {
 
 const router = Router();
 
-router.get("/dashboard/", renderDashboard);
+router.get("/dashboard", renderDashboard);
 router.get("/my-posts", renderMyPosts);
 
 module.exports = router;

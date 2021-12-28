@@ -8,7 +8,7 @@ const {
 
 const router = Router();
 
-router.post("/posts/", createNewPost);
+router.post("/posts", createNewPost);
 
 router.put("/posts/:id", updatePostById);
 

@@ -8,7 +8,7 @@ const {
 
 const router = Router();
 
-router.post("/comments/", createNewComment);
+router.post("/comments", createNewComment);
 
 router.put("/comments/:id", updateCommentsById);
 
