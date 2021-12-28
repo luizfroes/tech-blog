@@ -2,7 +2,10 @@
 const { Model, DataTypes } = require("sequelize");
 
 // import our database connection from config.js
-const connection = require("../config/connection");
+const connection = require("../../config/connection");
+
+// Initialize Blog model (table) by extending off Sequelize's Model class
+class Post extends Model {}
 
 const schema = {
   id: {
@@ -16,13 +19,13 @@ const schema = {
     allowNull: false,
   },
   content: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   user_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: "User",
+      model: "users",
       key: "id",
     },
   },
@@ -33,11 +36,8 @@ const options = {
   timestamps: true,
   freezeTableNames: true,
   underscored: true,
-  modelName: "Post",
+  modelName: "post",
 };
-
-// Initialize Blog model (table) by extending off Sequelize's Model class
-class Post extends Model {}
 
 Post.init(schema, options);
 

@@ -2,7 +2,10 @@
 const { Model, DataTypes } = require("sequelize");
 
 // import our database connection from config.js
-const connection = require("../config/connection");
+const connection = require("../../config/connection");
+
+// Initialize Comments model (table) by extending off Sequelize's Model class
+class Comments extends Model {}
 
 const schema = {
   id: {
@@ -12,20 +15,20 @@ const schema = {
     autoIncrement: true,
   },
   comment: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   user_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: "User",
+      model: "users",
       key: "id",
     },
   },
   post_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: "Post",
+      model: "posts",
       key: "id",
     },
   },
@@ -38,9 +41,6 @@ const options = {
   underscored: true,
   modelName: "comments",
 };
-
-// Initialize Comments model (table) by extending off Sequelize's Model class
-class Comments extends Model {}
 
 Comments.init(schema, options);
 
