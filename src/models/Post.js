@@ -33,12 +33,12 @@ const options = {
   timestamps: true,
   freezeTableNames: true,
   underscored: true,
-  modelName: "blog",
+  modelName: "Post",
 };
 
 // Initialize Blog model (table) by extending off Sequelize's Model class
-class Blog extends Model {}
+class Post extends Model {}
 
-Blog.init(schema, options);
+Post.init(schema, options);
 
-module.exports = Blog;
+module.exports = Post;

@@ -25,7 +25,7 @@ const schema = {
   blog_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: "Blog",
+      model: "Post",
       key: "id",
     },
   },

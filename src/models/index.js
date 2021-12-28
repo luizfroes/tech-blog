@@ -1,15 +1,15 @@
 // import models
 const User = require("./User");
-const Blog = require("./Blog");
 const Comments = require("./Comments");
+const Post = require("./Post");
 
 // Blog belongs to User
-Blog.belongsTo(User, {
+Post.belongsTo(User, {
   foreignKey: "user_id",
 });
 
 // User has many Blog
-User.hasMany(Blog, {
+User.hasMany(Post, {
   foreignKey: "user_id",
 });
 
@@ -24,18 +24,18 @@ User.hasMany(Comments, {
 });
 
 // Comments belongs to Blog
-Comments.belongsTo(Blog, {
-  foreignKey: "blog_id",
+Comments.belongsTo(Post, {
+  foreignKey: "post_id",
   onDelete: "CASCADE",
 });
 
 // Blog have many Comments
-Blog.hasMany(Comments, {
-  foreignKey: "blog_id",
+Post.hasMany(Comments, {
+  foreignKey: "post_id",
 });
 
 module.exports = {
   User,
-  Blog,
+  Post,
   Comments,
 };
