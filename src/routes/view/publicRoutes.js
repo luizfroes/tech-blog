@@ -5,7 +5,7 @@ const {
   renderSignUp,
   renderHome,
   renderPostById,
-} = require("../../controllers/view/publicRoutes");
+} = require("../../controllers/view/public");
 
 const router = Router();
 

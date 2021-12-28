@@ -3,7 +3,7 @@ const { Router } = require("express");
 const {
   renderDashboard,
   renderMyPosts,
-} = require("../../controllers/view/privateRoutes");
+} = require("../../controllers/view/private");
 
 const router = Router();
 
