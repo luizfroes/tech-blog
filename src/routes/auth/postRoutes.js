@@ -4,7 +4,7 @@ const {
   createNewPost,
   updatePostById,
   deletePostById,
-} = require("../../controllers/api/post");
+} = require("../../controllers/auth/post");
 
 const router = Router();
 

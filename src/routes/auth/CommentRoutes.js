@@ -4,7 +4,7 @@ const {
   createNewComment,
   updateCommentsById,
   deleteCommentsById,
-} = require("../../controllers/api/comment");
+} = require("../../controllers/auth/comment");
 
 const router = Router();
 

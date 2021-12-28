@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const { login, signup, logout } = require("../../controllers/api/auth");
+const { login, signup, logout } = require("../../controllers/auth/auth");
 
 const postRoutes = require("./postRoutes");
 const commentRoutes = require("./CommentRoutes");
