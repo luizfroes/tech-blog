@@ -10,8 +10,13 @@ const renderSignUp = (req, res) => {
   res.send("renderSignUp");
 };
 
+const renderPostById = (req, res) => {
+  res.send("renderPostById");
+};
+
 module.exports = {
   renderHome,
   renderLogin,
   renderSignUp,
+  renderPostById,
 };
