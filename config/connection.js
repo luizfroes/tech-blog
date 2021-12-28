@@ -15,6 +15,6 @@ const dbOptions = {
   logging: false,
 };
 
-const sequelize = new Sequelize(dbName, dbUser, dbPassword, dbOptions);
+const connection = new Sequelize(dbName, dbUser, dbPassword, dbOptions);
 
-module.exports = sequelize;
+module.exports = connection;
