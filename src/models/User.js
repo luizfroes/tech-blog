@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+
 // import important parts of sequelize library
 const { Model, DataTypes } = require("sequelize");
 
@@ -5,14 +7,6 @@ const { Model, DataTypes } = require("sequelize");
 const connection = require("../../config/connection");
 
 const hashPassword = require("../../hooks/hashPassword");
-
-// Initialize User model (table) by extending off Sequelize's Model class
-class User extends Model {
-  async checkPassword(userPassword) {
-    const isValid = await bcrypt.compare(userPassword, this.password);
-    return isValid;
-  }
-}
 
 const schema = {
   id: {
@@ -61,6 +55,14 @@ const options = {
     beforeCreate: hashPassword,
   },
 };
+
+// Initialize User model (table) by extending off Sequelize's Model class
+class User extends Model {
+  async checkPassword(userPassword) {
+    const isValid = await bcrypt.compare(userPassword, this.password);
+    return isValid;
+  }
+}
 
 User.init(schema, options);
 
