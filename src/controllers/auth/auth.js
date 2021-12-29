@@ -18,13 +18,13 @@ const login = async (req, res) => {
     const user = await User.findOne({ where: { email: payload.email } });
 
     if (!user) {
-      return res.status(400).json({
+      return res.status(404).json({
         success: false,
         error: "Please provide a valid Email!",
       });
     }
 
-    const validPassword = await User.check(payload.password);
+    const validPassword = await user.checkPassword(payload.password);
 
     if (!validPassword) {
       return res.status(401).json({
