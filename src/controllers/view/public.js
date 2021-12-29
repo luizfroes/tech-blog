@@ -1,5 +1,3 @@
-const { getPayloadWithValidFieldsOnly } = require("../../helpers/helpers");
-
 const { Post, User, Comments } = require("../../models");
 
 const renderLogin = (req, res) => {
