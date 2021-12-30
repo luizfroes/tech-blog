@@ -12,6 +12,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   font-family: "Roboto", sans-serif;
+  color: var(--indigo-dye);
 }
 
 .img-logo-container {
@@ -49,6 +50,6 @@ body {
 }
 
 .post-container {
-  border: var(--baby-powder) solid 2px;
+  border: var(--baby-powder) solid 4px;
   margin: 30px 10px;
 }
