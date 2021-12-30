@@ -1,0 +1,24 @@
+:root {
+  /* CSS HEX */
+  --indigo-dye: #05437dff;
+  --cyan-process: #27b8edff;
+  --baby-powder: #fffffcff;
+}
+
+body {
+  background-image: url("../images/parrish-freeman-0d-z8cJGIR4-unsplash.jpeg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--baby-powder);
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar-toggler-icon {
+  color: var(--baby-powder);
+}
+
+.log-img {
+  max-width: 50px;
+}
