@@ -1,1 +1,45 @@
-<h1>Sign Up</h1>
+<header>
+  {{> public-navbar}}
+</header>
+<main class="container">
+  <div class="mx-auto my-4">
+    <h1 class="text-center">Sign Up Form</h1>
+    <hr />
+    <form id="signup-form" class="p-4">
+      <div class="mb-3">
+        <label for="username-input" class="form-label"><strong
+          >Username</strong></label>
+        <input type="text" class="form-control" id="username-input" />
+      </div>
+      <div class="mb-3">
+        <label for="email-input" class="form-label"><strong>Email address</strong></label>
+        <input type="email" class="form-control" id="email-input" />
+      </div>
+      <div class="mb-3">
+        <label for="password-input" class="form-label"><strong
+          >Password</strong></label>
+        <input type="password" class="form-control" id="password-input" />
+      </div>
+      <div class="mb-3">
+        <label for="confirm-password-input" class="form-label"><strong>Confirm
+            Password</strong></label>
+        <input
+          type="password"
+          class="form-control"
+          id="confirm-password-input"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="first-name" class="form-label"><strong>First Name</strong></label>
+        <input type="text" class="form-control" id="first-name" />
+      </div>
+      <div class="mb-3">
+        <label for="last-name" class="form-label"><strong>Last Name</strong></label>
+        <input type="text" class="form-control" id="last-name" />
+      </div>
+      <button type="submit" class="btn btn-dark bg-dark">
+        Create Account
+      </button>
+    </form>
+  </div>
+</main>
