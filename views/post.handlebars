@@ -1,1 +1,44 @@
-<h1>Post</h1>
+<header>
+  {{#if loggedIn}}
+  {{> private-navbar}}
+  {{else}}
+  {{> public-navbar}}
+  {{/if}}
+</header>
+<main class="container">
+      <div class="card m-3">
+        <div class="card-body">
+          <h2 class="card-title mb-4"><strong>Card title</strong></h2>
+          <p class="card-text mb-5">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <div class="d-flex justify-content-between">
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          </div>
+          <p>
+            <div class="d-flex justify-content-end"> 
+                <button
+                    class="btn btn-link"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                >
+                Comments
+                </button>
+            </div>
+          </p>
+          <div class="collapse" id="collapseExample">
+           {{#each comment}}
+            {{> comments-card}}
+           {{/each}}
+          </div>
+        </div>
+      </div>
+      <hr />
+      {{#if loggedIn}}
+      {{> add-comment}}
+    </main>
