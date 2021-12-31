@@ -5,8 +5,14 @@
   {{> public-navbar}}
   {{/if}}
 </header>
-<main class="post-container">
+<main class="container">
+  <div class="mx-auto my-4">
+      <h1 class="text-center"><strong>Welcome to the Tech Blog</strong></h1>
+  </div>
+  <hr />
+  <div class="post-container">
     {{#each post}}
     {{> post-card}}
     {{/each}}
+  </div>
 </main>
