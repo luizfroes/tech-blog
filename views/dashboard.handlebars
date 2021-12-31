@@ -1,1 +1,14 @@
-<h1>Dashboard</h1>
+<header>
+  {{> private-navbar}}
+</header>
+<main class="container">
+  <div class="mx-auto my-4">
+    <h1 class="text-center"><strong>Dashboard</strong></h1>
+    <hr />
+    <div class="post-container rounded">
+       {{#each post}}
+    {{> my-post-card}}
+    {{/each}}
+    </div>
+  </div>
+</main>
