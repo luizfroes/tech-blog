@@ -34,6 +34,8 @@ const login = async (req, res) => {
     }
 
     return res.json({ success: true, data: "Login successful" });
+
+    // return res.redirect("/");
   } catch (error) {
     logError("LOGIN User", error.message);
 
