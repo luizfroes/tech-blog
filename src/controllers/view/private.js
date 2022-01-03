@@ -1,6 +1,10 @@
 const { Post, User } = require("../../models");
 
 const renderDashboard = async (req, res) => {
+  res.render("dashboard");
+};
+
+const getAllPosts = async (req, res) => {
   const data = await Post.findAll({
     include: [
       {

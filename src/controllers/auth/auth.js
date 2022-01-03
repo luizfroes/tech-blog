@@ -33,7 +33,17 @@ const login = async (req, res) => {
       });
     }
 
-    return res.json({ success: true, data: "Login successful" });
+    req.session.save(() => {
+      const user = {
+        id: user.get("id"),
+        email: user.get("email"),
+        fullName: `${user.get("first_name")} ${user.get("last_name")}`,
+      };
+      req.session.loggedIn = true;
+      req.session.user = user;
+
+      return res.json({ success: true, data: "Login successful" });
+    });
 
     // return res.redirect("/");
   } catch (error) {
