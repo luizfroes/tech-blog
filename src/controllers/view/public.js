@@ -5,7 +5,8 @@ const renderLogin = (req, res) => {
 };
 
 const renderHome = (req, res) => {
-  res.render("home");
+  const { loggedIn } = req.session;
+  res.render("home", { loggedIn });
 };
 
 const renderSignUp = (req, res) => {
