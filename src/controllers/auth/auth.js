@@ -36,7 +36,8 @@ const login = async (req, res) => {
     const userInSession = {
       id: user.get("id"),
       email: user.get("email"),
-      fullName: `${user.get("first_name")} ${user.get("last_name")}`,
+      firstName: `${user.get("first_name")}`,
+      lastName: `${user.get("last_name")}`,
     };
 
     req.session.save(() => {
@@ -71,7 +72,7 @@ const signup = async (req, res) => {
 
     const user = await User.create(payload);
 
-    return res.json({ success: true, data: user });
+    return res.json({ success: true, data: "User successfully created" });
   } catch (error) {
     logError("CREATE User", error.message);
 

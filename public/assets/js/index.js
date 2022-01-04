@@ -1,6 +1,8 @@
-const formElement = $(`#login-form`);
+const loginForm = $(`#login-form`);
 
-const handleSubmit = async (event) => {
+const signupForm = $(`#signup-form`);
+
+const handleLogin = async (event) => {
   event.preventDefault();
 
   const email = $(`#email-input`).val();
@@ -18,7 +20,44 @@ const handleSubmit = async (event) => {
 
   const data = await response.json();
 
-  console.log(data);
+  if (data.success) {
+    window.location.replace("/dashboard");
+  }
 };
 
-formElement.on("submit", handleSubmit);
+const handleSignup = async (event) => {
+  event.preventDefault();
+
+  const username = $(`#username-input`).val();
+  const email = $(`#email-input`).val();
+  const password = $(`#password-input`).val();
+  const firstName = $(`#first-name`).val();
+  const lastName = $(`#last-name`).val();
+
+  console.log(username, email, password, firstName, lastName);
+  const response = await fetch("http://localhost:3000/auth/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+      email,
+      first_name: firstName,
+      last_name: lastName,
+    }),
+    redirect: "follow",
+  });
+  console.log(response);
+
+  const data = await response.json();
+
+  if (data.success) {
+    window.location.replace("/login");
+  }
+};
+
+loginForm.on("submit", handleLogin);
+
+signupForm.on("submit", handleSignup);
