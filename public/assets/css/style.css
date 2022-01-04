@@ -89,3 +89,12 @@ body {
 .comment-text {
   font-size: 0.8rem;
 }
+
+.logout-card {
+  margin-top: 3rem;
+}
+
+.yes-logout,
+.no-logout {
+  min-width: 5rem;
+}
