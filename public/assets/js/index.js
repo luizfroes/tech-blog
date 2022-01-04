@@ -2,6 +2,8 @@ const loginForm = $(`#login-form`);
 
 const signupForm = $(`#signup-form`);
 
+const logoutBtn = $(`#signup-form`);
+
 const handleLogin = async (event) => {
   event.preventDefault();
 

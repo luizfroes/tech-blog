@@ -19,4 +19,8 @@ const renderMyPosts = (req, res) => {
   res.send("renderMyPosts");
 };
 
-module.exports = { renderMyPosts, renderDashboard };
+const renderLogout = async (req, res) => {
+  res.render("logout");
+};
+
+module.exports = { renderLogout, renderMyPosts, renderDashboard };
