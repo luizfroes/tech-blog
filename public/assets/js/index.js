@@ -20,7 +20,7 @@ const handleLogin = async (event) => {
   if (!email || !password) {
     $("#login-error").text("Login failed, please try again");
   } else {
-    const response = await fetch("http://localhost:3000/auth/login", {
+    const response = await fetch("/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,6 @@ const getErrorsSignUp = ({
 
   if (!username) {
     errors.username = "Username is required";
-    console.log(username);
   }
 
   if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
@@ -65,12 +64,10 @@ const getErrorsSignUp = ({
     )
   ) {
     errors.password = "Invalid password";
-    console.log(password);
   }
 
   if (!confirmPassword || password !== confirmPassword) {
     errors.confirmPassword = "Passwords do not match";
-    console.log(confirmPassword);
   }
 
   if (!firstName) {
@@ -140,12 +137,8 @@ const handleSignup = async (event) => {
       }),
       redirect: "follow",
     });
-    console.log(response.body);
-    console.log(username, email, password, firstName, lastName);
 
     const data = await response.json();
-
-    console.log(data);
 
     if (data.success) {
       signUpConfirmationModal.modal("show");
@@ -175,10 +168,16 @@ const handleNoLogout = () => {
   window.location.replace("/dashboard");
 };
 
+const onReady = () => {
+  signUpConfirmationModal.modal("hide");
+};
+
 loginForm.on("submit", handleLogin);
 
 signupForm.on("submit", handleSignup);
 
 logoutYesBtn.on("click", handleYesLogout);
+
+$(document).ready(onReady);
 
 logoutNoBtn.on("click", handleNoLogout);

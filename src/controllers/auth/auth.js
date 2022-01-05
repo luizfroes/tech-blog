@@ -63,7 +63,7 @@ const signup = async (req, res) => {
       ["username", "email", "password", "first_name", "last_name"],
       req.body
     );
-    console.log(payload);
+
     if (Object.keys(payload).length !== 5) {
       return res.status(400).json({
         success: false,

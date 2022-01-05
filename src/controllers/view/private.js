@@ -12,8 +12,6 @@ const renderDashboard = async (req, res) => {
     ],
   });
 
-  console.log(post);
-
   res.render("dashboard", post);
 };
 
