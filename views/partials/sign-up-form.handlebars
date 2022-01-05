@@ -1,0 +1,44 @@
+<form id="signup-form" class="p-4">
+  <div class="mb-3">
+    <label for="username-input" class="form-label"><strong
+      >Username</strong></label>
+    <input type="text" class="form-control" id="username-input" />
+    <div class="form-text text-danger error" id="username-error"></div>
+  </div>
+  <div class="mb-3">
+    <label for="email-input" class="form-label"><strong>Email address</strong></label>
+    <input type="email" class="form-control" id="email-input" />
+    <div class="form-text text-danger error" id="email-error"></div>
+  </div>
+  <div class="mb-3">
+    <label for="password-input" class="form-label"><strong>Password (Should
+        contain at least one uppercase, lowercase, numeric and special
+        character)</strong></label>
+    <input type="password" class="form-control" id="password-input" />
+    <div class="form-text text-danger error" id="password-error"></div>
+  </div>
+  <div class="mb-3">
+    <label
+      for="confirm-password-input"
+      {{! id="confirm-password" }}
+      class="form-label"
+    ><strong>Confirm Password</strong></label>
+    <input type="password" class="form-control" id="confirm-password" />
+    <div class="form-text text-danger error" id="confirmPassword-error"></div>
+  </div>
+  <div class="mb-3">
+    <label for="first-name" class="form-label"><strong>First Name</strong></label>
+    <input type="text" class="form-control" id="first-name" />
+    <div class="form-text text-danger error" id="firstName-error"></div>
+  </div>
+  <div class="mb-3">
+    <label for="last-name" class="form-label"><strong>Last Name</strong></label>
+    <input type="text" class="form-control" id="last-name" />
+    <div class="form-text text-danger error" id="lastName-error"></div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-dark bg-dark">
+      Create Account
+    </button>
+  </div>
+</form>

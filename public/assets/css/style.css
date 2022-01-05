@@ -82,7 +82,8 @@ body {
   border-color: var(--indigo-dye);
 }
 
-.btn-link {
+.btn-link,
+.modal-header {
   color: var(--indigo-dye);
 }
 

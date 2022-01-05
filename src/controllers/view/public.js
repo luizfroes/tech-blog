@@ -9,6 +9,17 @@ const renderHome = (req, res) => {
   res.render("home", { loggedIn });
 };
 
+const getAllPosts = async (req, res) => {
+  const data = await Post.findAll({
+    include: [
+      {
+        model: User,
+      },
+    ],
+  });
+  return res.json({ success: true, data });
+};
+
 const renderSignUp = (req, res) => {
   res.render("signup");
 };

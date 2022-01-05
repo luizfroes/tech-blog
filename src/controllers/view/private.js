@@ -1,26 +1,24 @@
 const { Post, User } = require("../../models");
 
 const renderDashboard = async (req, res) => {
-  res.render("dashboard");
-};
+  const userId = req.session.user.id;
 
-const getAllPosts = async (req, res) => {
-  const data = await Post.findAll({
+  const post = await Post.findAll({
+    where: { user_id: userId },
     include: [
       {
         model: User,
       },
     ],
   });
-  return res.json({ success: true, data });
-};
 
-const renderMyPosts = (req, res) => {
-  res.send("renderMyPosts");
+  console.log(post);
+
+  res.render("dashboard", post);
 };
 
 const renderLogout = async (req, res) => {
   res.render("logout");
 };
 
-module.exports = { renderLogout, renderMyPosts, renderDashboard };
+module.exports = { renderLogout, renderDashboard };

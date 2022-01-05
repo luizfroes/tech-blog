@@ -63,6 +63,7 @@ const signup = async (req, res) => {
       ["username", "email", "password", "first_name", "last_name"],
       req.body
     );
+    console.log(payload);
     if (Object.keys(payload).length !== 5) {
       return res.status(400).json({
         success: false,
@@ -70,11 +71,11 @@ const signup = async (req, res) => {
       });
     }
 
-    const user = await User.create(payload);
+    await User.create(payload);
 
     return res.json({ success: true, data: "User successfully created" });
   } catch (error) {
-    logError("CREATE User", error.message);
+    logError("Create User failed", error);
 
     return res
       .status(500)
