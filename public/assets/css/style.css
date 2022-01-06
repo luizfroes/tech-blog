@@ -99,3 +99,9 @@ body {
 .no-logout {
   min-width: 5rem;
 }
+
+.accordion-button {
+  font-size: 1.3rem;
+  color: var(--indigo-dye);
+  text-align: center;
+}
