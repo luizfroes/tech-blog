@@ -1,21 +1,18 @@
 <div class="card m-3 d-flex justify-content-around">
   <button class="post-btn">
     <h5 class="h2 card-header text-center">
-      <strong>Featured</strong>
+      <strong>{{title}}</strong>
     </h5>
   </button>
   <div class="card-body">
-    <p class="h5 card-text text-center">
-      With supporting text below as a natural lead-in to additional content.
-    </p>
     <hr />
-    <p class="h6 card-text text-center">25th of September 2020</p>
+    <p class="h6 card-text text-center">{{createdAt}}</p>
   </div>
   <div class="h6 card-footer d-flex justify-content-around">
-    <button type="button" class="btn btn-primary btn-sm">
+    <button type="button" data="{{id}}" class="btn btn-primary btn-sm">
       Update
     </button>
-    <button type="button" class="btn btn-danger btn-sm">
+    <button type="button" data="{{id}}" class="btn btn-danger btn-sm">
       Remove
     </button>
   </div>
