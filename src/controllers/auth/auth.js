@@ -46,8 +46,6 @@ const login = async (req, res) => {
 
       return res.json({ success: true, data: "Login successful" });
     });
-
-    // return res.redirect("/");
   } catch (error) {
     logError("LOGIN User", error.message);
 
@@ -99,18 +97,26 @@ const logout = (req, res) => {
 const createNewPost = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(
-      ["title", "content", "user_id"],
+      ["title", "content"],
       req.body
     );
 
-    if (Object.keys(payload).length !== 3) {
+    if (Object.keys(payload).length !== 2) {
       return res.status(400).json({
         success: false,
         error: "Please provide all the valid fields in the post body!",
       });
     }
 
-    await Post.create(payload);
+    const { title, content } = req.body;
+
+    const newPayload = {
+      title,
+      content,
+      user_id: req.session.user.id,
+    };
+
+    await Post.create(newPayload);
 
     return res.json({ success: true, data: "Post successfully created" });
   } catch (error) {

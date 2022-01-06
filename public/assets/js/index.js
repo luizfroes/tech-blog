@@ -10,6 +10,8 @@ const signUpConfirmationModal = $("#sign-up-confirmation-modal");
 
 const newPostForm = $(`#post-form`);
 
+const createNewPostConfirmationModal = $("create-post-confirmation-modal");
+
 const handleLogin = async (event) => {
   event.preventDefault();
 
@@ -188,8 +190,6 @@ const getErrorsAddNewPost = ({ title, content }) => {
 
 const handleAddNewPost = async (event) => {
   event.preventDefault();
-  const cookie = document.cookie;
-  console.log(cookie);
 
   const title = $(`#title`).val();
   const content = $(`#content`).val();
@@ -202,7 +202,7 @@ const handleAddNewPost = async (event) => {
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
-    const response = await fetch("/auth/post", {
+    const response = await fetch("/auth/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -210,7 +210,6 @@ const handleAddNewPost = async (event) => {
       body: JSON.stringify({
         title,
         content,
-        user_id,
       }),
       redirect: "follow",
     });
@@ -218,9 +217,9 @@ const handleAddNewPost = async (event) => {
     const data = await response.json();
 
     if (data.success) {
-      signUpConfirmationModal.modal("show");
-      signUpConfirmationModal.on("hide.bs.modal", () => {
-        window.location.replace("/login");
+      createNewPostConfirmationModal.modal("show");
+      createNewPostConfirmationModal.on("hide.bs.modal", () => {
+        window.location.replace("/dashboard");
       });
     }
   }
@@ -228,6 +227,7 @@ const handleAddNewPost = async (event) => {
 
 const onReady = () => {
   signUpConfirmationModal.modal("hide");
+  createNewPostConfirmationModal.modal("hide");
 };
 
 loginForm.on("submit", handleLogin);
