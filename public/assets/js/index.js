@@ -8,6 +8,8 @@ const logoutNoBtn = $(`#no-logout`);
 
 const signUpConfirmationModal = $("#sign-up-confirmation-modal");
 
+const newPostForm = $(`#post-form`);
+
 const handleLogin = async (event) => {
   event.preventDefault();
 
@@ -89,6 +91,8 @@ const renderErrorMessages = (errors) => {
     "confirmPassword",
     "firstName",
     "lastName",
+    "title",
+    "content",
   ];
   fields.forEach((field) => {
     const errorDiv = $(`#${field}-error`);
@@ -168,6 +172,60 @@ const handleNoLogout = () => {
   window.location.replace("/dashboard");
 };
 
+const getErrorsAddNewPost = ({ title, content }) => {
+  const errors = {};
+
+  if (!title) {
+    errors.title = "Please add a title to your Post";
+  }
+
+  if (!content) {
+    errors.content = "Please add a content to your Post";
+  }
+
+  return errors;
+};
+
+const handleAddNewPost = async (event) => {
+  event.preventDefault();
+  const cookie = document.cookie;
+  console.log(cookie);
+
+  const title = $(`#title`).val();
+  const content = $(`#content`).val();
+
+  const errors = getErrorsAddNewPost({
+    title,
+    content,
+  });
+
+  renderErrorMessages(errors);
+
+  if (!Object.keys(errors).length) {
+    const response = await fetch("/auth/post", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        content,
+        user_id,
+      }),
+      redirect: "follow",
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      signUpConfirmationModal.modal("show");
+      signUpConfirmationModal.on("hide.bs.modal", () => {
+        window.location.replace("/login");
+      });
+    }
+  }
+};
+
 const onReady = () => {
   signUpConfirmationModal.modal("hide");
 };
@@ -178,6 +236,8 @@ signupForm.on("submit", handleSignup);
 
 logoutYesBtn.on("click", handleYesLogout);
 
-$(document).ready(onReady);
-
 logoutNoBtn.on("click", handleNoLogout);
+
+newPostForm.on("submit", handleAddNewPost);
+
+$(document).ready(onReady);
