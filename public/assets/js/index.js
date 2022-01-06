@@ -10,8 +10,6 @@ const signUpConfirmationModal = $("#sign-up-confirmation-modal");
 
 const newPostForm = $(`#post-form`);
 
-const createNewPostConfirmationModal = $("create-post-confirmation-modal");
-
 const handleLogin = async (event) => {
   event.preventDefault();
 
@@ -216,18 +214,16 @@ const handleAddNewPost = async (event) => {
 
     const data = await response.json();
 
+    console.log(data);
+
     if (data.success) {
-      createNewPostConfirmationModal.modal("show");
-      createNewPostConfirmationModal.on("hide.bs.modal", () => {
-        window.location.replace("/dashboard");
-      });
+      window.location.reload(true);
     }
   }
 };
 
 const onReady = () => {
   signUpConfirmationModal.modal("hide");
-  createNewPostConfirmationModal.modal("hide");
 };
 
 loginForm.on("submit", handleLogin);
