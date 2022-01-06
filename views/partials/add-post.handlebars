@@ -20,19 +20,21 @@
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
-          <form id="newPost-form">
+          <form id="post-form">
             <div class="m-3">
               <label for="email-input" class="form-label"><strong
                 >Title</strong></label>
               <textarea class="form-control" id="title" rows="1"></textarea>
+               <div class="form-text text-danger error" id="title-error"></div>
             </div>
             <div class="m-3">
               <label for="password-input" class="form-label"><strong
                 >Content</strong></label>
               <textarea class="form-control" id="content" rows="10"></textarea>
+               <div class="form-text text-danger error" id="content-error"></div>
             </div>
             <div class="d-flex justify-content-center mt-3">
-              <button class="btn btn-dark bg-dark btn-sm" type="button">
+              <button class="btn btn-dark bg-dark btn-sm" type="submit">
                 Submit
               </button>
             </div>
