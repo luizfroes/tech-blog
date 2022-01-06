@@ -1,6 +1,6 @@
 const { getPayloadWithValidFieldsOnly } = require("../../helpers/helpers");
 const { logError } = require("../../helpers/logger");
-const { User } = require("../../models");
+const { User, Post } = require("../../models");
 
 const login = async (req, res) => {
   try {
@@ -96,8 +96,60 @@ const logout = (req, res) => {
   }
 };
 
+const createNewPost = async (req, res) => {
+  try {
+    const payload = getPayloadWithValidFieldsOnly(
+      ["title", "content", "user_id"],
+      req.body
+    );
+
+    if (Object.keys(payload).length !== 3) {
+      return res.status(400).json({
+        success: false,
+        error: "Please provide all the valid fields in the post body!",
+      });
+    }
+
+    await Post.create(payload);
+
+    return res.json({ success: true, data: "Post successfully created" });
+  } catch (error) {
+    logError("Create Post failed", error);
+
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to create Post" });
+  }
+};
+
+const updatePostById = (req, res) => {
+  res.send("updatePostById");
+};
+
+const deletePostById = (req, res) => {
+  res.send("deletePostById");
+};
+
+const createNewComment = (req, res) => {
+  res.send("createNewComment");
+};
+
+const updateCommentsById = (req, res) => {
+  res.send("updateCommentsById");
+};
+
+const deleteCommentsById = (req, res) => {
+  res.send("deleteCommentsById");
+};
+
 module.exports = {
   login,
   logout,
   signup,
+  createNewPost,
+  updatePostById,
+  deletePostById,
+  createNewComment,
+  updateCommentsById,
+  deleteCommentsById,
 };
