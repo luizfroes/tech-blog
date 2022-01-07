@@ -1,18 +1,30 @@
 <div class="card m-3 d-flex justify-content-around">
   <button class="post-btn">
-    <h5 class="h2 card-header text-center">
-      <strong>{{title}}</strong>
-    </h5>
+    <a href="/posts/{{id}}">
+      <h3 class="h3 card-header text-center">
+        <strong>{{title}}</strong>
+      </h3>
+    </a>
   </button>
   <div class="card-body">
     <hr />
     <p class="h6 card-text text-center">{{createdAt}}</p>
   </div>
   <div class="h6 card-footer d-flex justify-content-around">
-    <button type="button" data="{{id}}" class="btn btn-primary btn-sm">
+    <button
+      type="button"
+      data="{{id}}"
+      class="btn btn-primary btn-sm"
+      id="update-post-btn"
+    >
       Update
     </button>
-    <button type="button" data="{{id}}" class="btn btn-danger btn-sm">
+    <button
+      type="button"
+      data="{{id}}"
+      class="btn btn-danger btn-sm"
+      id="remove-post-btn"
+    >
       Remove
     </button>
   </div>

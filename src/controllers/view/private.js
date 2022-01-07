@@ -16,7 +16,6 @@ const renderDashboard = async (req, res) => {
     userPost.get({ plain: true })
   );
 
-  console.log(userPosts);
   res.render("dashboard", { userPosts });
 };
 

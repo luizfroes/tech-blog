@@ -132,8 +132,27 @@ const updatePostById = (req, res) => {
   res.send("updatePostById");
 };
 
-const deletePostById = (req, res) => {
-  res.send("deletePostById");
+const deletePostById = async (req, res) => {
+  try {
+    const data = await Post.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (data) {
+      return res.json({ success: true, data: "Deleted Post" });
+    }
+
+    return res
+      .status(404)
+      .json({ success: false, error: "Post does not exist" });
+  } catch (error) {
+    logError("DELETE Post", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
 };
 
 const createNewComment = (req, res) => {

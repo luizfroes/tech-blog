@@ -10,6 +10,8 @@ const signUpConfirmationModal = $("#sign-up-confirmation-modal");
 
 const newPostForm = $(`#post-form`);
 
+const removePostBtn = $(`#remove-post-btn`);
+
 const handleLogin = async (event) => {
   event.preventDefault();
 
@@ -214,32 +216,18 @@ const handleAddNewPost = async (event) => {
 
     const data = await response.json();
 
+    console.log(data);
+
     if (data.success) {
       window.location.reload(true);
     }
   }
 };
 
-const removePost = async (event) => {
+const removePost = (event) => {
   const target = $(event.target);
 
-  if (target.is("button") && target.attr("id") === "remove-post-btn") {
-    const postId = target.attr("data");
-
-    const response = await fetch(`/auth/posts/${postId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      redirect: "follow",
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      window.location.reload(true);
-    }
-  }
+  console.log("clicked", target);
 };
 
 const onReady = () => {
@@ -256,6 +244,6 @@ logoutNoBtn.on("click", handleNoLogout);
 
 newPostForm.on("submit", handleAddNewPost);
 
-$(`.post-container`).on("click", removePost);
+removePostBtn.on("click", removePost);
 
 $(document).ready(onReady);

@@ -1,0 +1,107 @@
+:root {
+  /* CSS HEX */
+  --indigo-dye: #05437dff;
+  --cyan-process: #27b8edff;
+  --baby-powder: #fffffcff;
+}
+
+* {
+  border: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+body {
+  background-image: url("../images/parrish-freeman-0d-z8cJGIR4-unsplash.jpeg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Roboto", sans-serif;
+  color: var(--indigo-dye);
+}
+
+.img-logo-container {
+  background-color: #21d4fd;
+  background-image: linear-gradient(
+    19deg,
+    var(--cyan-process) 0%,
+    var(--indigo-dye) 100%
+  );
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  box-shadow: 15px 15px 50px rgba(8, 8, 8, 0.938);
+  animation: morphing 10s infinite;
+  overflow: hidden;
+}
+
+@keyframes morphing {
+  0% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    box-shadow: 15px 15px 50px rgba(0, 0, 0, 0.2);
+  }
+  25% {
+    border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+  }
+  50% {
+    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+    box-shadow: -10px -5px 50px rgba(0, 0, 0, 0.2);
+  }
+  75% {
+    border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+  }
+}
+
+.log-img {
+  max-width: 50px;
+}
+
+.post-container {
+  border: var(--baby-powder) solid 2px;
+  margin: 30px 10px;
+}
+
+.post-btn {
+  border: 0px;
+  background-color: none;
+  padding: 0px;
+  color: var(--indigo-dye);
+}
+
+.post-btn:hover {
+  color: var(--cyan-process);
+}
+
+.h6 {
+  margin: 0px;
+}
+
+.btn-primary {
+  background-color: var(--indigo-dye);
+  border-color: var(--indigo-dye);
+}
+
+.btn-link,
+.modal-header {
+  color: var(--indigo-dye);
+}
+
+.comment-text {
+  font-size: 0.8rem;
+}
+
+.logout-card {
+  margin-top: 3rem;
+}
+
+.yes-logout,
+.no-logout {
+  min-width: 5rem;
+}
+
+.accordion-button {
+  font-size: 1.3rem;
+  color: var(--indigo-dye);
+  text-align: center;
+}
