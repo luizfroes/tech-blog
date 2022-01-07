@@ -128,8 +128,35 @@ const createNewPost = async (req, res) => {
   }
 };
 
-const updatePostById = (req, res) => {
-  res.send("updatePostById");
+const updatePostById = async (req, res) => {
+  try {
+    const payload = getPayloadWithValidFieldsOnly(
+      ["title", "content"],
+      req.body
+    );
+
+    if (Object.keys(payload).length !== 2) {
+      return res.status(400).json({
+        success: false,
+        error: "Please provide all the valid fields in the post body!",
+      });
+    }
+
+    const data = await Post.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (data) {
+      return res.json({ success: true, data: "Updated Post" });
+    }
+  } catch (error) {
+    logError("UPDATE Post", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
 };
 
 const deletePostById = async (req, res) => {
