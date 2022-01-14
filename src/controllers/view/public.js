@@ -7,7 +7,7 @@ const renderLogin = (req, res) => {
 const renderHome = async (req, res) => {
   const { loggedIn } = req.session;
 
-  const PostsData = await Post.findAll({
+  const postsData = await Post.findAll({
     include: [
       {
         model: User,
@@ -17,7 +17,7 @@ const renderHome = async (req, res) => {
     res.json(err);
   });
 
-  const posts = PostsData.map((Post) => Post.get({ plain: true }));
+  const posts = postsData.map((post) => post.get({ plain: true }));
 
   res.render("home", { loggedIn, posts });
 };
@@ -27,6 +27,8 @@ const renderSignUp = (req, res) => {
 };
 
 const renderPostById = async (req, res) => {
+  const { loggedIn } = req.session;
+
   const data = await Post.findByPk(req.params.id, {
     include: [
       {
@@ -39,7 +41,11 @@ const renderPostById = async (req, res) => {
   }).catch((err) => {
     res.json(err);
   });
-  return res.json({ success: true, data });
+
+  const post = data.get({ plain: true });
+
+  console.log(post);
+  res.render("post", { loggedIn, post });
 };
 
 module.exports = {
