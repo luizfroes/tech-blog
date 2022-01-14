@@ -1,18 +1,15 @@
-require("dotenv").config();
-
 const { logInfo, logError } = require("./helpers/logger");
 
-const path = require("path");
-const session = require("express-session");
-const express = require("express");
-const expressHandlebars = require("express-handlebars");
+require("dotenv").config();
 
+const express = require("express");
+const session = require("express-session");
+const expressHandlebars = require("express-handlebars");
+const path = require("path");
 const sequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const routes = require("./routes");
 const connection = require("../config/connection");
-const { response } = require("express");
-const { sequelize } = require("./models/User");
 
 const PORT = process.env.PORT || 3000;
 

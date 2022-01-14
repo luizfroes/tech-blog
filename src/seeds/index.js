@@ -1,3 +1,4 @@
+require("dotenv").config();
 const seedUser = require("./userSeeds");
 const seedPost = require("./PostSeeds");
 const seedComment = require("./CommentSeeds");

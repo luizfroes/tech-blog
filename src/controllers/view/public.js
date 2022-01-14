@@ -4,20 +4,22 @@ const renderLogin = (req, res) => {
   res.render("login");
 };
 
-const renderHome = (req, res) => {
+const renderHome = async (req, res) => {
   const { loggedIn } = req.session;
-  res.render("home", { loggedIn });
-};
 
-const getAllPosts = async (req, res) => {
-  const data = await Post.findAll({
+  const PostsData = await Post.findAll({
     include: [
       {
         model: User,
       },
     ],
+  }).catch((err) => {
+    res.json(err);
   });
-  return res.json({ success: true, data });
+
+  const posts = PostsData.map((Post) => Post.get({ plain: true }));
+
+  res.render("home", { loggedIn, posts });
 };
 
 const renderSignUp = (req, res) => {

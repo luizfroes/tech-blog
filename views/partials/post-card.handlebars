@@ -1,14 +1,11 @@
 <div class="card m-3 d-flex justify-content-center">
   <button class="post-btn">
-    <h5 class="h2 card-header text-center"><strong>Featured</strong></h5>
+    <h5 class="h2 card-header text-center"><strong>{{title}}</strong></h5>
   </button>
   <div class="card-body">
-    <p class="h5 card-text text-center">
-      With supporting text below as a natural lead-in to additional content.
-    </p>
+    <p class="h6 card-text text-center">{{user.first_name}}
+      {{user.last_name}}</p>
     <hr />
-    <p class="h6 card-text text-center">John Smith</p>
-    <hr />
-    <p class="h6 card-text text-center">25th of September 2020</p>
+    <p class="h6 card-text text-center">{{createdAt}}</p>
   </div>
 </div>
