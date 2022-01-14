@@ -36,6 +36,8 @@ const renderPostById = async (req, res) => {
         model: Comments,
       },
     ],
+  }).catch((err) => {
+    res.json(err);
   });
   return res.json({ success: true, data });
 };

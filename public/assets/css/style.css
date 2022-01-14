@@ -105,3 +105,7 @@ body {
   color: var(--indigo-dye);
   text-align: center;
 }
+a {
+  text-decoration: none;
+  color: var(--indigo-dye);
+}
