@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Tech Blog</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid text-light">
+          <button
+            class="navbar-toggler text-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="img-logo-container">
+            <img
+              class="log-img"
+              src="./assets/images/icon.png"
+              alt="logo icon"
+            />
+          </div>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link text-light" aria-current="page" href="/"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/login">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/sign-up">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <div class="mx-auto my-4">
+        <h1 class="text-center"><strong>Dashboard</strong></h1>
+        <hr />
+        <div class="post-container rounded">
+          <div class="card m-3 d-flex justify-content-around">
+            <button class="post-btn">
+              <h5 class="h2 card-header text-center">
+                <strong>Featured</strong>
+              </h5>
+            </button>
+            <div class="card-body">
+              <p class="h5 card-text text-center">
+                With supporting text below as a natural lead-in to additional
+                content.
+              </p>
+              <hr />
+              <p class="h6 card-text text-center">25th of September 2020</p>
+            </div>
+            <div class="h6 card-footer d-flex justify-content-around">
+              <button
+                data="1"
+                type="button"
+                class="btn btn-primary btn-sm"
+                id="update-post-btn"
+              >
+                Update
+              </button>
+              <button
+                data="1"
+                type="button"
+                class="btn btn-danger btn-sm"
+                id="remove-post-btn"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="accordion m-2" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header text-center" id="headingOne">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <strong>Add a new Post</strong>
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <form id="newPost-form">
+                  <div class="m-3">
+                    <label for="email-input" class="form-label"
+                      ><strong>Title</strong></label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="title"
+                      rows="1"
+                    ></textarea>
+                  </div>
+                  <div class="m-3">
+                    <label for="password-input" class="form-label"
+                      ><strong>Content</strong></label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="content"
+                      rows="10"
+                    ></textarea>
+                  </div>
+                  <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-dark bg-dark btn-sm" type="button">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>

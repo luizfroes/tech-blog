@@ -1,0 +1,18 @@
+<header>
+  {{#if loggedIn}}
+  {{> private-navbar}}
+  {{else}}
+  {{> public-navbar}}
+  {{/if}}
+</header>
+<main class="container">
+  <div class="mx-auto my-4">
+      <h1 class="text-center"><strong>Welcome to the Tech Blog</strong></h1>
+  </div>
+  <hr />
+  <div class="post-container rounded">
+    {{#each posts as |post|}}
+    {{> post-card}}
+    {{/each}}
+  </div>
+</main>

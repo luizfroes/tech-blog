@@ -1,0 +1,46 @@
+<header>
+  {{#if loggedIn}}
+  {{> private-navbar}}
+  {{else}}
+  {{> public-navbar}}
+  {{/if}}
+</header>
+<main class="container">
+      <div class="card m-3">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4"><strong>{{post.title}}</strong></h2>
+          <p class="card-text mb-5">
+            {{post.content}}
+          </p>
+          <div class="d-flex justify-content-center flex-column">
+            <h6 class="card-subtitle text-center mb-3 text-muted">{{post.user.first_name}} {{post.user.last_name}}</h6>
+            <h6 class="card-subtitle text-center mb-2 text-muted">{{post.createdAt}}</h6>
+          </div>
+          <p>
+            <div class="d-flex justify-content-end"> 
+                <button
+                    class="btn btn-link"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                >
+                Comments
+                </button>
+            </div>
+          </p>
+          <div class="collapse" id="collapseExample">
+           {{#each post.comment}}
+            {{> comments-card}}
+           {{/each}}
+          </div>
+        </div>
+      </div>
+      <hr />
+      {{#if loggedIn}}
+      {{> add-comment}}
+      {{else}}
+      <div></div>
+      {{/if}}
+    </main>
