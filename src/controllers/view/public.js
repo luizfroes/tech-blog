@@ -44,7 +44,6 @@ const renderPostById = async (req, res) => {
 
   const post = data.get({ plain: true });
 
-  console.log(post);
   res.render("post", { loggedIn, post });
 };
 
