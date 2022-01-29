@@ -47,7 +47,12 @@ const renderPostById = async (req, res) => {
 
   const post = data.get({ plain: true });
 
-  res.render("post", { loggedIn, post });
+  const handlebarsData = {
+    loggedIn: req.session.loggedIn,
+    post: post,
+  };
+
+  return res.render("post", handlebarsData);
 };
 
 module.exports = {
