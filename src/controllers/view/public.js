@@ -5,8 +5,6 @@ const renderLogin = (req, res) => {
 };
 
 const renderHome = async (req, res) => {
-  const { loggedIn } = req.session;
-
   const postsData = await Post.findAll({
     include: [
       {
@@ -19,7 +17,12 @@ const renderHome = async (req, res) => {
 
   const posts = postsData.map((post) => post.get({ plain: true }));
 
-  res.render("home", { loggedIn, posts });
+  const handlebarsData = {
+    loggedIn: req.session.loggedIn,
+    posts: posts,
+  };
+
+  res.render("home", handlebarsData);
 };
 
 const renderSignUp = (req, res) => {
@@ -44,7 +47,6 @@ const renderPostById = async (req, res) => {
 
   const post = data.get({ plain: true });
 
-  console.log(post);
   res.render("post", { loggedIn, post });
 };
 

@@ -5,14 +5,24 @@
   {{> public-navbar}}
   {{/if}}
 </header>
-<main class="container">
-  <div class="mx-auto my-4">
+<section class="container">
+  <div class="mx-auto my-4 jumbotron text-center">
       <h1 class="text-center"><strong>Welcome to the Tech Blog</strong></h1>
+      <p class="lead text-center">The one stop platform for all your tech resources</p>
+      {{#if loggedIn}}
+      {{else}}
+        <hr class="my-4">
+        <p>To contribute to our tech community please create an account</p>
+        <a class="btn btn-primary" href="/sign-up" role="button">Create Account</a>
+      {{/if}}
   </div>
-  <hr />
-  <div class="post-container rounded">
+</section>
+<section class="container">
+  <h2 class="text-center"><strong>Our Users Posts</strong></h2>
+    <hr />
+  <div class="post-container rounded d-flex flex-row justify-content-evenly flex-wrap">
     {{#each posts as |post|}}
     {{> post-card}}
     {{/each}}
   </div>
-</main>
+</section>

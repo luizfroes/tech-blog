@@ -11,10 +11,11 @@
     <div class="form-text text-danger error" id="email-error"></div>
   </div>
   <div class="mb-3">
-    <label for="password-input" class="form-label"><strong>Password (Should
-        contain at least one uppercase, lowercase, numeric and special
-        character)</strong></label>
+    <label for="password-input" class="form-label"><strong
+      >Password</strong></label>
     <input type="password" class="form-control" id="password-input" />
+    <small id="passwordHelp" class="form-text text-dark">Should contain at least
+      one uppercase, lowercase, numeric and special character</small>
     <div class="form-text text-danger error" id="password-error"></div>
   </div>
   <div class="mb-3">
@@ -36,9 +37,10 @@
     <input type="text" class="form-control" id="last-name" />
     <div class="form-text text-danger error" id="lastName-error"></div>
   </div>
-  <div class="d-flex justify-content-center">
+  <div class="d-grid gap-2">
     <button type="submit" class="btn btn-dark bg-dark">
       Create Account
     </button>
   </div>
+  <div class="mb-3 text-center" id="error-message"></div>
 </form>

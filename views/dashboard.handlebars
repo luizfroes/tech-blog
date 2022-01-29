@@ -2,14 +2,21 @@
   {{> private-navbar}}
 </header>
 <main class="container">
+  <section class="mt-4">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome {{user.firstName}} {{user.lastName}}</h1>
+        <p class="lead">You have {{blogCount}} blogs</p>
+      </div>
+  </section>
+  <p class="text-center"><strong>To contribute to our tech community please create Posts</strong></p>
+  {{> add-post}}
   <div class="mx-auto my-4">
-    <h1 class="text-center"><strong>Dashboard</strong></h1>
     <hr />
+    <h1 class="text-center"><strong>Your Posts</strong></h1>
     <div class="post-container rounded">
-      {{#each userPosts as |user_post|}}
+      {{#each posts as |user_post|}}
       {{> my-post-card}}
       {{/each}}
     </div>
   </div>
-  {{> add-post}}
 </main>
