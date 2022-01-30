@@ -6,6 +6,8 @@ const logoutYesBtn = $(`#yes-logout`);
 
 const logoutNoBtn = $(`#no-logout`);
 
+const commentForm = $(`#comment-form`);
+
 const signUpConfirmationModal = $("#sign-up-confirmation-modal");
 
 const newPostForm = $(`#post-form`);
@@ -260,6 +262,37 @@ const removePost = async (event) => {
   }
 };
 
+const handleCreateComment = async (event) => {
+  event.preventDefault();
+
+  const target = $(event.target);
+
+  const blogId = target.attr("data-blog-id");
+  const comment = $("#comments").val();
+
+  console.log(blogId);
+  console.log(comment);
+
+  if (comment && blogId) {
+    try {
+      const data = await makeRequest("/api/comments", "POST", {
+        comment,
+        blogId,
+      });
+
+      if (data.success) {
+        window.location.reload();
+      } else {
+        renderError("Failed to post comment");
+      }
+    } catch (error) {
+      renderError("Failed to post comment");
+    }
+  } else {
+    renderError("Failed to post comment");
+  }
+};
+
 const onReady = () => {
   signUpConfirmationModal.modal("hide");
 };
@@ -273,6 +306,8 @@ logoutYesBtn.on("click", handleYesLogout);
 logoutNoBtn.on("click", handleNoLogout);
 
 newPostForm.on("submit", handleAddNewPost);
+
+commentForm.on("submit", handleCreateComment);
 
 $(`.post-container`).on("click", removePost);
 

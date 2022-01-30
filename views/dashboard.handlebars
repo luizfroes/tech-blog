@@ -8,6 +8,9 @@
         <p class="lead">You have {{blogCount}} blogs</p>
       </div>
   </section>
+
+{{> delete-confirm-modal title="Confirm Delete Blog" message="Are you sure you want to delete the blog?" parent=../this name="blog"}}
+
   <p class="text-center"><strong>To contribute to our tech community please create Posts</strong></p>
   {{> add-post}}
   <div class="mx-auto my-4">

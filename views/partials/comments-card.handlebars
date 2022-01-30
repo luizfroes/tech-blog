@@ -1,15 +1,15 @@
 <div class="card card-body mb-2">
   <p class="comment-text">
-    Some placeholder content for the collapse component. This panel is hidden by
-    default but revealed when the user activates the relevant trigger.
+    {{comment}}
   </p>
   <div class="d-flex justify-content-between mb-3">
-    <h6 class="card-subtitle text-muted comment-text">Card subtitle</h6>
-    <h6 class="card-subtitle text-muted comment-text">Card subtitle</h6>
+    <h6 class="card-subtitle text-muted comment-text">{{user.first_name}}
+      {{user.last_name}}</h6>
+    <h6 class="card-subtitle text-muted comment-text">{{updatedAt}}</h6>
   </div>
   {{! if is the owner of the comment render buttons }}
-  <div class="d-flex justify-content-between">
+  {{! <div class="d-flex justify-content-between">
     <button class="btn btn-primary btn-sm" type="button">Update Comment</button>
     <button class="btn btn-danger btn-sm" type="button">Remove Comment</button>
-  </div>
+  </div>}}
 </div>

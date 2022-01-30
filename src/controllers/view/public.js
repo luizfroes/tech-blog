@@ -30,29 +30,41 @@ const renderSignUp = (req, res) => {
 };
 
 const renderPostById = async (req, res) => {
-  const { loggedIn } = req.session;
+  const { id } = req.params;
 
-  const data = await Post.findByPk(req.params.id, {
+  const postFromDb = await Post.findOne({
+    where: {
+      id,
+    },
     include: [
       {
         model: User,
+        attributes: {
+          exclude: ["password"],
+        },
       },
       {
         model: Comments,
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: ["password"],
+            },
+          },
+        ],
       },
     ],
-  }).catch((err) => {
-    res.json(err);
   });
 
-  const post = data.get({ plain: true });
+  if (postFromDb) {
+    const post = postFromDb.get({ plain: true });
 
-  const handlebarsData = {
-    loggedIn: req.session.loggedIn,
-    post: post,
-  };
+    console.log(post);
 
-  return res.render("post", handlebarsData);
+    return res.render("post", { ...post, loggedIn: req.session.loggedIn });
+  }
+  return res.render("404page");
 };
 
 module.exports = {
