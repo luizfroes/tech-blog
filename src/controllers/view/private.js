@@ -19,7 +19,7 @@ const renderDashboard = async (req, res) => {
   const handlebarsData = {
     loggedIn: req.session.loggedIn,
     user: req.session.user,
-    blogCount: 3,
+    blogCount: userPosts.length,
     posts: userPosts,
   };
 

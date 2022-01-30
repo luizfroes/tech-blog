@@ -60,8 +60,6 @@ const renderPostById = async (req, res) => {
   if (postFromDb) {
     const post = postFromDb.get({ plain: true });
 
-    console.log(post);
-
     return res.render("post", { ...post, loggedIn: req.session.loggedIn });
   }
   return res.render("404page");
