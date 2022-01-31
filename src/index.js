@@ -1,7 +1,7 @@
 const { logInfo, logError } = require("./helpers/logger");
 
 require("dotenv").config();
-
+const handlebarsHelpers = require("./helpers/handlebarsHelpers");
 const express = require("express");
 const session = require("express-session");
 const expressHandlebars = require("express-handlebars");
@@ -25,7 +25,7 @@ const sessionOptions = {
   }),
 };
 
-const hbs = expressHandlebars.create({});
+const hbs = expressHandlebars.create({ helpers: handlebarsHelpers });
 const app = express();
 
 app.engine("handlebars", hbs.engine);
@@ -45,7 +45,7 @@ const init = async () => {
     logInfo("DB connection", "Success");
 
     app.listen(PORT, () =>
-      logInfo("Server connection", `http://localhost:${PORT}`)
+      logInfo("🚀🚀 Server running on", `http://localhost:${PORT} 🚀🚀`)
     );
   } catch (error) {
     logError("DB connection", error.message);

@@ -5,7 +5,9 @@
   <div class="d-flex justify-content-between mb-3">
     <h6 class="card-subtitle text-muted comment-text">{{user.first_name}}
       {{user.last_name}}</h6>
-    <h6 class="card-subtitle text-muted comment-text">{{updatedAt}}</h6>
+    <h6 class="card-subtitle text-muted comment-text">{{formatDate
+        createdAt
+      }}</h6>
   </div>
   {{! if is the owner of the comment render buttons }}
   {{! <div class="d-flex justify-content-between">

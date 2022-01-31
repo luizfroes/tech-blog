@@ -23,7 +23,6 @@ const renderDashboard = async (req, res) => {
     posts: userPosts,
   };
 
-  console.log(handlebarsData);
   res.render("dashboard", handlebarsData);
 };
 
