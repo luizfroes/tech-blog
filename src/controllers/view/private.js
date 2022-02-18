@@ -16,7 +16,14 @@ const renderDashboard = async (req, res) => {
     userPost.get({ plain: true })
   );
 
-  res.render("dashboard", { userPosts });
+  const handlebarsData = {
+    loggedIn: req.session.loggedIn,
+    user: req.session.user,
+    blogCount: userPosts.length,
+    posts: userPosts,
+  };
+
+  res.render("dashboard", handlebarsData);
 };
 
 const renderLogout = async (req, res) => {

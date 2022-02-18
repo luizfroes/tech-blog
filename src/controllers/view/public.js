@@ -5,8 +5,6 @@ const renderLogin = (req, res) => {
 };
 
 const renderHome = async (req, res) => {
-  const { loggedIn } = req.session;
-
   const postsData = await Post.findAll({
     include: [
       {
@@ -19,7 +17,12 @@ const renderHome = async (req, res) => {
 
   const posts = postsData.map((post) => post.get({ plain: true }));
 
-  res.render("home", { loggedIn, posts });
+  const handlebarsData = {
+    loggedIn: req.session.loggedIn,
+    posts: posts,
+  };
+
+  res.render("home", handlebarsData);
 };
 
 const renderSignUp = (req, res) => {
@@ -27,25 +30,39 @@ const renderSignUp = (req, res) => {
 };
 
 const renderPostById = async (req, res) => {
-  const { loggedIn } = req.session;
+  const { id } = req.params;
 
-  const data = await Post.findByPk(req.params.id, {
+  const postFromDb = await Post.findOne({
+    where: {
+      id,
+    },
     include: [
       {
         model: User,
+        attributes: {
+          exclude: ["password"],
+        },
       },
       {
         model: Comments,
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: ["password"],
+            },
+          },
+        ],
       },
     ],
-  }).catch((err) => {
-    res.json(err);
   });
 
-  const post = data.get({ plain: true });
+  if (postFromDb) {
+    const post = postFromDb.get({ plain: true });
 
-  console.log(post);
-  res.render("post", { loggedIn, post });
+    return res.render("post", { ...post, loggedIn: req.session.loggedIn });
+  }
+  return res.render("404page");
 };
 
 module.exports = {

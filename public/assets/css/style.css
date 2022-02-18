@@ -23,6 +23,13 @@ body {
   color: var(--indigo-dye);
 }
 
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+}
+
 .img-logo-container {
   background-color: #21d4fd;
   background-image: linear-gradient(
@@ -34,6 +41,15 @@ body {
   box-shadow: 15px 15px 50px rgba(8, 8, 8, 0.938);
   animation: morphing 10s infinite;
   overflow: hidden;
+}
+
+.text-ellipsis--2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 
 @keyframes morphing {
@@ -59,7 +75,7 @@ body {
 
 .post-container {
   border: var(--baby-powder) solid 2px;
-  margin: 30px 10px;
+  margin-top: 30px;
 }
 
 .post-btn {
@@ -105,7 +121,18 @@ body {
   color: var(--indigo-dye);
   text-align: center;
 }
+
 a {
   text-decoration: none;
   color: var(--indigo-dye);
+}
+
+.responsive-form {
+  width: 50%;
+}
+
+@media screen and (max-width: 767px) {
+  .responsive-form {
+    width: 100%;
+  }
 }

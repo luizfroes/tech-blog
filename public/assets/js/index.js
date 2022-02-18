@@ -6,38 +6,59 @@ const logoutYesBtn = $(`#yes-logout`);
 
 const logoutNoBtn = $(`#no-logout`);
 
+const commentForm = $(`#comment-form`);
+
 const signUpConfirmationModal = $("#sign-up-confirmation-modal");
 
 const newPostForm = $(`#post-form`);
+
+const errorMessageDiv = $("#error-message");
+
+const renderError = (message) => {
+  errorMessageDiv.empty();
+
+  const errorDiv = `<div class="form-text text-danger"><span class="mx-2">${message}</span><i class="fas fa-exclamation-circle"></i></div>`;
+
+  errorMessageDiv.append(errorDiv);
+};
+
+const makeRequest = async (url, method, body = {}) => {
+  const response = await fetch(url, {
+    method,
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  const data = await response.json();
+
+  return data;
+};
 
 const handleLogin = async (event) => {
   event.preventDefault();
 
   const email = $(`#email-input`).val();
-
   const password = $(`#password-input`).val();
 
-  $("#login-error").text("");
+  if (email && password) {
+    try {
+      const data = await makeRequest("/auth/login", "POST", {
+        email,
+        password,
+      });
 
-  if (!email || !password) {
-    $("#login-error").text("Login failed, please try again");
-  } else {
-    const response = await fetch("/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-      redirect: "follow",
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      window.location.replace("/dashboard");
-    } else {
-      $("#login-error").text("Login failed, please try again");
+      if (data.success) {
+        window.location.replace("/dashboard");
+      } else {
+        renderError("Failed to login");
+      }
+    } catch (error) {
+      renderError("Failed to login");
     }
+  } else {
+    renderError("Failed to login");
   }
 };
 
@@ -127,29 +148,28 @@ const handleSignup = async (event) => {
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
-    const response = await fetch("/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    try {
+      const data = await makeRequest("/auth/signup", "POST", {
         username,
-        password,
         email,
+        password,
         first_name: firstName,
         last_name: lastName,
-      }),
-      redirect: "follow",
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      signUpConfirmationModal.modal("show");
-      signUpConfirmationModal.on("hide.bs.modal", () => {
-        window.location.replace("/login");
       });
+
+      if (data.success) {
+        signUpConfirmationModal.modal("show");
+        signUpConfirmationModal.on("hide.bs.modal", () => {
+          window.location.replace("/login");
+        });
+      } else {
+        renderError("Failed to sign up");
+      }
+    } catch (error) {
+      renderError("Failed to sign up");
     }
+  } else {
+    renderError("Failed to sign up");
   }
 };
 
@@ -200,7 +220,7 @@ const handleAddNewPost = async (event) => {
   renderErrorMessages(errors);
 
   if (!Object.keys(errors).length) {
-    const response = await fetch("/auth/posts", {
+    const response = await fetch("/api/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -226,7 +246,7 @@ const removePost = async (event) => {
   if (target.is("button") && target.attr("id") === "remove-post-btn") {
     const postId = target.attr("data");
 
-    const response = await fetch(`/auth/posts/${postId}`, {
+    const response = await fetch(`/api/post/${postId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -239,6 +259,37 @@ const removePost = async (event) => {
     if (data.success) {
       window.location.reload(true);
     }
+  }
+};
+
+const handleCreateComment = async (event) => {
+  event.preventDefault();
+
+  const target = $(event.target);
+
+  const blogId = target.attr("data-blog-id");
+  const comment = $("#comments").val();
+
+  console.log(blogId);
+  console.log(comment);
+
+  if (comment && blogId) {
+    try {
+      const data = await makeRequest("/api/comments", "POST", {
+        comment,
+        blogId,
+      });
+
+      if (data.success) {
+        window.location.reload();
+      } else {
+        renderError("Failed to post comment");
+      }
+    } catch (error) {
+      renderError("Failed to post comment");
+    }
+  } else {
+    renderError("Failed to post comment");
   }
 };
 
@@ -255,6 +306,8 @@ logoutYesBtn.on("click", handleYesLogout);
 logoutNoBtn.on("click", handleNoLogout);
 
 newPostForm.on("submit", handleAddNewPost);
+
+commentForm.on("submit", handleCreateComment);
 
 $(`.post-container`).on("click", removePost);
 

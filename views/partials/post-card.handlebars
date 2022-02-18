@@ -1,13 +1,13 @@
-<div class="card m-3 d-flex justify-content-center">
-  <button class="post-btn">
-    <a href="/posts/{{id}}">
-      <h5 class="h2 card-header text-center"><strong>{{title}}</strong></h5>
-    </a>
-  </button>
+<div class="card m-3 d-flex justify-content-center" style="width: 20rem;">
+  <h5 class="h4 card-header text-center"><strong>{{title}}</strong></h5>
   <div class="card-body">
-    <p class="h6 card-text text-center">{{user.first_name}}
+    <p class="h6 card-text text-center">Posted by:
+      {{user.first_name}}
       {{user.last_name}}</p>
     <hr />
-    <p class="h6 card-text text-center">{{createdAt}}</p>
+    <p class="card-text text-ellipsis--2">{{content}}</p>
+  </div>
+  <div class="card-footer text-center">
+    <a href="/post/{{id}}" class="card-link"><strong>View Blog</strong></a>
   </div>
 </div>

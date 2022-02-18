@@ -1,13 +1,13 @@
 <div class="card m-3 d-flex justify-content-around">
   <button class="post-btn">
-    <a href="/posts/{{id}}">
+    <a href="/post/{{id}}">
       <h3 class="h3 card-header text-center">
         <strong>{{title}}</strong>
       </h3>
     </a>
   </button>
   <div class="card-body">
-    <p class="h6 card-text text-center">{{createdAt}}</p>
+    <p class="card-text text-ellipsis--2">{{content}}</p>
   </div>
   <div class="h6 card-footer d-flex justify-content-around">
     <button
